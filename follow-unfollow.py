@@ -1,12 +1,16 @@
+import sys
 import yaml
 from instapy import InstaPy, Settings
 from instapy.util import smart_run
 
-config = yaml.load(file('config.yaml', 'r'))
+
+
+config = yaml.load(open('./config.yml', 'r'))
 # get an InstaPy session!
 # set headless_browser=True to run InstaPy in the background
 Settings.chromedriver_location = config['settings']['chromedriver_location']
-
+Settings.log_location = config['settings']['log_location']
+Settings.database_location = config['settings']['db_location']
 session = InstaPy(username=config['auth']['username'],
                   password=config['auth']['password'],
                   headless_browser=False)

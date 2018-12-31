@@ -4,4 +4,5 @@ auth:
 
 settings:
   chrome_driver_location: /usr/local/bin/chromedriver
-  db_path: /foo/bar
+  db_location: db/instapy.db
+  log_location: logs/
