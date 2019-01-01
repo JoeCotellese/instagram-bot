@@ -24,34 +24,21 @@ def run_bot(config):
                                         min_followers=45,
                                         min_following=77)
 
-        #session.set_dont_include(["friend1", "friend2", "friend3"])
-        #session.set_dont_like(["pizza", "#store"])
-
-
         # activities
         follow_list = config['follow_followers']
         for follow in follow_list:
             """ Massive Follow of users followers (I suggest to follow not less than 3500/4000 users for better results)...
             """
-            session.follow_user_followers(follow, amount=100, randomize=False, interact=False)
+            session.follow_user_followers(follow, amount=100, randomize=True, interact=False)
 
             """ First step of Unfollow action - Unfollow not follower users...
             """
             session.unfollow_users(amount=50, InstapyFollowed=(True, "nonfollowers"), style="FIFO", unfollow_after=12*60*60, sleep_delay=601)
 
-        # """ Second step of Massive Follow...
-        # """
-        # session.follow_user_followers(['reflectiongram','elponzophoto','briannamadia'], amount=800, randomize=False, interact=False)
-
-        # """ Second step of Unfollow action - Unfollow not follower users...
-        # """
-        # session.unfollow_users(amount=500, InstapyFollowed=(True, "nonfollowers"), style="FIFO", unfollow_after=12*60*60, sleep_delay=601)
-
-        # """ Clean all followed user - Unfollow all users followed by InstaPy...
-        # """
-        # session.unfollow_users(amount=500, InstapyFollowed=(True, "all"), style="FIFO", unfollow_after=24*60*60, sleep_delay=601)
-
 if __name__ == "__main__":
-    filename = sys.argv[1]
+    if len(sys.argv) < 1:
+        print ("Missing config file name")
+        sys.exit()
     config = yaml.load(open(filename, 'r'))
     run_bot(config)
+
