@@ -29,27 +29,29 @@ def run_bot(config):
 
 
         # activities
+        follow_list = config['follow_followers']
+        for follow in follow_list:
+            """ Massive Follow of users followers (I suggest to follow not less than 3500/4000 users for better results)...
+            """
+            session.follow_user_followers(follow, amount=100, randomize=False, interact=False)
 
-        """ Massive Follow of users followers (I suggest to follow not less than 3500/4000 users for better results)...
-        """
-        session.follow_user_followers(['stalkfollowlove','lindos.rhodes.greece','suloinenjoutilaisuus'], amount=800, randomize=False, interact=False)
+            """ First step of Unfollow action - Unfollow not follower users...
+            """
+            session.unfollow_users(amount=50, InstapyFollowed=(True, "nonfollowers"), style="FIFO", unfollow_after=12*60*60, sleep_delay=601)
 
-        """ First step of Unfollow action - Unfollow not follower users...
-        """
-        session.unfollow_users(amount=500, InstapyFollowed=(True, "nonfollowers"), style="FIFO", unfollow_after=12*60*60, sleep_delay=601)
+        # """ Second step of Massive Follow...
+        # """
+        # session.follow_user_followers(['reflectiongram','elponzophoto','briannamadia'], amount=800, randomize=False, interact=False)
 
-        """ Second step of Massive Follow...
-        """
-        session.follow_user_followers(['reflectiongram','elponzophoto','briannamadia'], amount=800, randomize=False, interact=False)
+        # """ Second step of Unfollow action - Unfollow not follower users...
+        # """
+        # session.unfollow_users(amount=500, InstapyFollowed=(True, "nonfollowers"), style="FIFO", unfollow_after=12*60*60, sleep_delay=601)
 
-        """ Second step of Unfollow action - Unfollow not follower users...
-        """
-        session.unfollow_users(amount=500, InstapyFollowed=(True, "nonfollowers"), style="FIFO", unfollow_after=12*60*60, sleep_delay=601)
-
-        """ Clean all followed user - Unfollow all users followed by InstaPy...
-        """
-        session.unfollow_users(amount=500, InstapyFollowed=(True, "all"), style="FIFO", unfollow_after=24*60*60, sleep_delay=601)
+        # """ Clean all followed user - Unfollow all users followed by InstaPy...
+        # """
+        # session.unfollow_users(amount=500, InstapyFollowed=(True, "all"), style="FIFO", unfollow_after=24*60*60, sleep_delay=601)
 
 if __name__ == "__main__":
-    config = yaml.load(open('./config.yml', 'r'))
+    filename = sys.argv[1]
+    config = yaml.load(open(filename, 'r'))
     run_bot(config)
