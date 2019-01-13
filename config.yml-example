@@ -6,3 +6,6 @@ settings:
   chrome_driver_location: /usr/local/bin/chromedriver
   db_location: db/instapy.db
   log_location: logs/
+  follow_delay: 600
+  unfollow_delay: 600
+  
