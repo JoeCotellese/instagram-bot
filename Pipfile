@@ -9,7 +9,7 @@ pylint = "*"
 [packages]
 instapy = {git = "https://github.com/timgrossmann/InstaPy.git"}
 envparse = "*"
-yaml = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.7"
