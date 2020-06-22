@@ -7,7 +7,7 @@ verify_ssl = true
 pylint = "*"
 
 [packages]
-instapy = {git = "https://github.com/timgrossmann/InstaPy.git"}
+instapy = "*"
 envparse = "*"
 pyyaml = "*"
 
